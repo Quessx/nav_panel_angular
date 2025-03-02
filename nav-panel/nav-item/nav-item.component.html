@@ -1,0 +1,55 @@
+@if (link && !options().length) {
+    <a
+        class="item"
+        [routerLink]="link"
+        routerLinkActive="item_active">
+        <tui-icon
+            class="icon"
+            [icon]="text ?? 'chevron-left'"/>
+
+        <span>{{ text | translate }}</span>
+    </a>
+} @else if (options().length > 0) {
+    <cdk-accordion>
+        <cdk-accordion-item #accordionItem="cdkAccordionItem" class="accordion-item">
+            <div class="accordion-item-header"
+                 (click)="accordionItem.toggle()"
+            >
+                <div class="item-accordion"
+                     [ngClass]="{'active-accordion': isChildActive && accordionItem.expanded}"
+                >
+                    <div class="item">
+                        <tui-icon
+                            class="icon"
+                            [icon]="text ?? 'chevron-left'"/>
+                        <span>{{ text | translate }}</span>
+                    </div>
+                    <div class="select-arrow">
+                        <svg beauty-expendable-icon [state]="accordionItem.expanded ? 'open' : 'closed'" width="16" height="16" viewBox="0 0 20 20" class="arrow-icon"></svg>
+                    </div>
+                </div>
+                @if (accordionItem.expanded) {
+                    <div class="accordion-item-body item-container">
+                        @for (option of options(); track $index) {
+                            <div class="accordion-item-body-row">
+                                <a
+                                    (click)="onClickOption($event)"
+                                    class="option"
+                                    [routerLink]="option?.link ? option?.link : link + '/' + option.path"
+                                    routerLinkActive="option_active">
+                                    <span>{{ option.path | translate }}</span>
+                                </a>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </cdk-accordion-item>
+    </cdk-accordion>
+} @else {
+    <div class="item">
+        <div class="icon"></div>
+
+        <span>{{ text }}</span>
+    </div>
+}

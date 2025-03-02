@@ -1,0 +1,75 @@
+@use 'typography';
+
+.item {
+    @include typography.font(text-14-medium);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-sizing: border-box;
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 10px;
+
+    color: var(--text-base-primary);
+
+    &_active {
+        background-color: var(--background-overlay-active-normal);
+    }
+
+}
+
+cdk-accordion-item {
+    .accordion-item-header {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+    }
+
+    .item-accordion {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        border-radius: 10px;
+
+        .select-arrow {
+            display: flex;
+            align-items: center;
+            margin-right: 8px;
+        }
+    }
+
+    .accordion-item-body {
+        margin: 2px 6px 0 18px;
+        border-left: 1px solid #DEE0E3;
+        padding: 6px 8px;
+    }
+
+    .option {
+        @include typography.font(text-14-medium);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-sizing: border-box;
+        padding: 8px;
+        text-decoration: none;
+        border-radius: 10px;
+
+        color: var(--nav-options);
+
+        &_active {
+            color: var(--nav-option-active);
+        }
+    }
+
+    .active_item {
+        background-color: var(--background-overlay-active-normal);
+    }
+    .active-accordion {
+        background-color: var(--active-accordion);
+    }
+}
+.icon {
+    width: 20px;
+    height: 20px;
+}
+

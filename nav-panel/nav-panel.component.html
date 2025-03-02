@@ -1,0 +1,7 @@
+@for (route of links(); track route.path) {
+    <beauty-nav-item
+        [text]="route.path"
+        [link]="route.path"
+        [options]="this.getNavOptions(route)"
+    />
+}
